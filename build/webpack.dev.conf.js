@@ -122,6 +122,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
 
     },
     historyApiFallback: true,
+    disableHostCheck: true,
     hot: true,
     contentBase: false, // since we use CopyWebpackPlugin.
     compress: true,
