@@ -754,7 +754,9 @@ export default {
           font-size 32px
           position absolute
           left 0
-          top 0
+          top -14px
+          width 100%
+          height 100%
         }
       }
       &.mini-enter-active, &.mini-leave-active {
