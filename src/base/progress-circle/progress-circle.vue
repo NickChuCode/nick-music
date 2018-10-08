@@ -42,16 +42,22 @@ export default {
   @import "~common/stylus/variable"
   .progress-circle {
     position relative
-    circle {
-      stroke-width 5px
-      transform-origin center
-      &.progress-background {
-        transform scale(0.9)
-        stroke $color-theme-d
-      }
-      &.progress-bar {
-        transform scale(0.9) rotate(-90deg)
-        stroke $color-theme
+    svg {
+      position absolute
+      top 50%
+      left 50%
+      transform translate(-50%, -50%)
+      circle {
+        stroke-width 5px
+        transform-origin center
+        &.progress-background {
+          transform scale(0.9)
+          stroke $color-theme-d
+        }
+        &.progress-bar {
+          transform scale(0.9) rotate(-90deg)
+          stroke $color-theme
+        }
       }
     }
   }

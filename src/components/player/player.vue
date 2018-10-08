@@ -536,9 +536,28 @@ export default {
                 width 100%
                 height 100%
                 box-sizing border-box
-                transform scale(0.85)
                 border-radius 50%
-                border 10color  solid rgba(255, 255, 255, 0.1)
+                @media screen and (min-width: 320px) and (max-width: 359px) {
+                  & {
+                    transform scale(1.0)
+                  }
+                }
+                @media screen and (min-width: 360px) and (max-width: 374px) {
+                  & {
+                    transform scale(0.85)
+                  }
+                }
+                @media screen and (min-width: 375px) and (max-width: 385px) {
+                  & {
+                    transform scale(0.85)
+                  }
+                }
+                @media screen and (min-width: 401px) and (max-width: 414px) {
+                  & {
+                    transform scale(0.77)
+                  }
+                }
+                border 10 solid rgba(255, 255, 255, 0.1)
               }
             }
           }
