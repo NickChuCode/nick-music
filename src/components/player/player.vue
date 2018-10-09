@@ -64,7 +64,7 @@
             <div class="icon i-left" :class="disableCls">
               <i @click="prev" class="icon-prev"></i>
             </div>
-            <div class="icon i-center" :class="disableCls">
+            <div class="icon i-center">
               <i :class="playIcon" @click="togglePlaying"></i>
             </div>
             <div class="icon i-right" :class="disableCls">
@@ -89,7 +89,7 @@
           <p class="desc" v-html="currentSong.singer"></p>
         </div>
           <div class="control">
-          <progress-circle :radius="radius" :percent="percent">
+          <progress-circle :radius="radius" :percent="percent" class="icon-container">
             <i :class="miniIcon" class="icon-mini" @click.stop="togglePlaying"></i>
           </progress-circle>
         </div>
@@ -102,7 +102,7 @@
       <audio :src="currentSong.url || currentSong.filename" ref="audio"
              @play="ready"
              @error="error"
-             @timeupdate="updateTime" @ended="end"></audio>
+             @timeupdate="updateTime" @ended="end" type="audio/mp4"></audio>
     </div>
 </template>
 
@@ -178,6 +178,7 @@ export default {
       })
     },
     currentSong(newSong, oldSong) {
+      console.log(this.currentSong)
       if (!newSong.id) {
         return
       }
@@ -191,7 +192,8 @@ export default {
         this.currentLineNum = 0
       }
       this.$nextTick(() => {
-        this.$refs.audio.play()
+        console.log(this.$refs.audio.play())
+        console.log('played!')
         this.getLyric()
       })
     }
@@ -311,9 +313,11 @@ export default {
       this.currentTime = e.target.currentTime
     },
     error () {
+      clearTimeout(this.timer)
       this.songReady = true
     },
     ready () {
+      console.log('ready!')
       this.songReady = true
       this.savePlayHistory(this.currentSong)
     },
@@ -356,10 +360,11 @@ export default {
       }
     },
     togglePlaying() {
-      if (!this.songReady) {
-        return
-      }
+      // if (!this.songReady) {
+      //   return
+      // }
       this.setPlayingState(!this.playing)
+      this.playing && this.$refs.audio.play()
       if (this.currentLyric) {
         this.currentLyric.togglePlay()
       }
@@ -754,9 +759,10 @@ export default {
           font-size 32px
           position absolute
           left 0
-          top -14px
+          top -15px
           width 100%
           height 100%
+          opacity 0.7
         }
       }
       &.mini-enter-active, &.mini-leave-active {
