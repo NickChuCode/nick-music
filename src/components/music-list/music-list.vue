@@ -66,7 +66,7 @@ export default {
       this.$refs.list.refresh()
     },
     selectItem(item, index) {
-      console.log('songs in music-list: ' + this.songs)
+      // console.log('item in music-list: ' + item)
       this.selectPlay({
         list: this.songs,
         index

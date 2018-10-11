@@ -2,15 +2,6 @@
     <div class="recommend" ref="recommend">
       <scroll class="recommend-content" :data="discList" ref="scroll">
         <div>
-          <div v-if="recommends.length" class="slider-wrapper">
-            <slider>
-              <div v-for="(item, index) in recommends" :key="index">
-                <a :href="item.linkUrl">
-                  <img :src="item.picUrl" @load="loadImg">
-                </a>
-              </div>
-            </slider>
-          </div>
           <div class="recommend-list">
             <h1 class="list-title">热门歌单推荐</h1>
             <ul>
@@ -64,7 +55,11 @@ export default {
       this.$router.push({
         path: `/recommend/${item.dissid}`
       })
+      console.log(item)
       this.setDisc(item)
+    },
+    selectDisc (item) {
+      console.log(item)
     },
     handlePlaylist(playlist) {
       const bottom = playlist.length > 0 ? '60px' : ''
@@ -103,19 +98,12 @@ export default {
 .recommend {
     position: fixed;
     width: 100%;
-    top: 88px;
+    top: 144px;
     bottom: 0;
 
     .recommend-content {
         height: 100%;
         overflow: hidden;
-
-        .slider-wrapper {
-            position: relative;
-            width: 100%;
-            overflow: hidden;
-        }
-
         .recommend-list {
             .list-title {
                 height: 65px;
